@@ -155,13 +155,15 @@ const questions = [
             <p>${question.question}</p>
             <div class="space-y-3">
               ${question.options.map((option, index) => `
-                <button class="option-btn w-full text-left bg-amber-100 hover:bg-amber-200 text-gray-800 font-medium py-3 px-4 rounded-lg transition duration-300" onclick="checkAnswer(${index})">${option}</button>
+                <button class="option-btn w-full m-1 text-left bg-amber-100 text-gray-800 font-medium py-3 px-4 rounded-lg transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-orange-300" onclick="checkAnswer(${index})">${option}</button>
               `).join('')}
             </div>
           </div>
         `;
         restartBtn.classList.remove("hidden");
-        restartBtn.addEventListener("click", resetQuiz);
+        restartBtn.addEventListener("click", () => {
+          setTimeout(resetQuiz, 300);
+        });
       }
     
     function showQuestion() {
@@ -172,13 +174,15 @@ const questions = [
         <p>${question.question}</p>
         <div class="space-y-3">
           ${question.options.map((option, index) => `
-            <button class="option-btn w-full text-left bg-amber-100 hover:bg-amber-200 text-gray-800 font-medium py-3 px-4 rounded-lg transition duration-300" onclick="checkAnswer(${index})">${option}</button>
+            <button class="option-btn w-full m-1 text-left bg-amber-100 text-gray-800 font-medium py-3 px-4 rounded-lg transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-100 hover:bg-orange-300" onclick="checkAnswer(${index})">${option}</button>
           `).join('')}
         </div>
         </div>
        `;
        restartBtn.classList.remove("hidden");
-       restartBtn.addEventListener("click", resetQuiz);
+       restartBtn.addEventListener("click", () => {
+         setTimeout(resetQuiz, 300);
+       });
       
     }
     
@@ -196,13 +200,13 @@ const questions = [
         buttons.forEach(button => button.disabled = true);
     
         if (selectedIndex === question.correct) {
-            buttons[selectedIndex].classList.remove('bg-amber-100', 'hover:bg-gray-200');
+            buttons[selectedIndex].classList.remove('bg-amber-100', 'hover:bg-orange-300');
             buttons[selectedIndex].classList.add('bg-green-500', 'text-white');
             score++;
         } else {
-            buttons[selectedIndex].classList.remove('bg-amber-100', 'hover:bg-gray-200');
+            buttons[selectedIndex].classList.remove('bg-amber-100', 'hover:bg-orange-30');
             buttons[selectedIndex].classList.add('bg-red-500', 'text-white');
-            buttons[question.correct].classList.remove('bg-amber-100', 'hover:bg-gray-200');
+            buttons[question.correct].classList.remove('bg-amber-100', 'hover:bg-orange-30');
             buttons[question.correct].classList.add('bg-green-500', 'text-white');
         }
 
@@ -232,13 +236,14 @@ const questions = [
           <h2 class="text-2xl font-bold mb-4 text-gray-800">Quiz Complete!</h2>
           <p class="text-lg mb-2 text-gray-700">Your score: ${score} out of ${questions.length}</p>
           <p class="text-lg mb-6 text-gray-700">Percentage: ${Math.round((score / questions.length) * 100)}%</p>
-          <button onclick="resetQuiz()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+          <button onclick="resetQuiz()" class="px-6 py-3 rounded-xl bg-amber-500 text-white hover:bg-amber-600 focus:outline-2 focus:outline-offset-2 focus:outline-amber-500 active:bg-amber-700">
             Try Again
           </button>
         `;
       }
     
     function showResultShuffeled() {
+      restartBtn.classList.add('hidden');
       questionContainer.innerHTML = '';
       resultDiv.classList.remove('hidden');
       resultDiv.innerHTML = `
@@ -255,11 +260,11 @@ const questions = [
         currentQuestion = 0;
         score = 0;
         quizStarted = false;
+        restartBtn.classList.add('hidden');
         resultDiv.classList.add('hidden');
         startBtn1.classList.remove('hidden');
         startBtn2.classList.remove('hidden');
         quizContent.classList.add('hidden');
-        restartBtn.classList.add('hidden');
       }
            
     
