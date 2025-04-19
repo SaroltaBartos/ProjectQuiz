@@ -201,13 +201,13 @@ const questions = [
     
         if (selectedIndex === question.correct) {
             buttons[selectedIndex].classList.remove('bg-amber-100', 'hover:bg-orange-300');
-            buttons[selectedIndex].classList.add('bg-green-500', 'text-white');
+            buttons[selectedIndex].classList.add('bg-green-500', 'text-white', 'animate-pulse');
             score++;
         } else {
-            buttons[selectedIndex].classList.remove('bg-amber-100', 'hover:bg-orange-30');
+            buttons[selectedIndex].classList.remove('bg-amber-100', 'hover:bg-orange-300');
             buttons[selectedIndex].classList.add('bg-red-500', 'text-white');
-            buttons[question.correct].classList.remove('bg-amber-100', 'hover:bg-orange-30');
-            buttons[question.correct].classList.add('bg-green-500', 'text-white');
+            buttons[question.correct].classList.remove('bg-amber-100', 'hover:bg-orange-300');
+            buttons[question.correct].classList.add('bg-green-500', 'text-white', 'animate-pulse');
         }
 
         setTimeout(() => {
@@ -230,6 +230,7 @@ const questions = [
     }
 
     function showResultFullQuiz() {
+        restartBtn.classList.add('hidden');
         questionContainer.innerHTML = '';
         resultDiv.classList.remove('hidden');
         resultDiv.innerHTML = `
@@ -265,6 +266,7 @@ const questions = [
         startBtn1.classList.remove('hidden');
         startBtn2.classList.remove('hidden');
         quizContent.classList.add('hidden');
+        welcomeMessage.classList.remove('hidden');
       }
            
     
